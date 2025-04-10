@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -106,7 +108,7 @@
             this.classList.add('active');
             setIndicator();
 
-            const clickedItem = this.querySelector('.icon ion-icon').getAttribute('name');showInfo(clickedItem);
+            const clickedItem = this.querySelector('.icon ion-icon').getAttribute('name'); showInfo(clickedItem);
         }
 
         function showInfo(iconName) {
@@ -187,7 +189,7 @@
         window.addEventListener('load', setIndicator);
 
         muteToggle.addEventListener('click', (event) => {
-            event.preventDefault();event.stopPropagation();
+            event.preventDefault(); event.stopPropagation();
             toggleMute();
         });
     </script>
