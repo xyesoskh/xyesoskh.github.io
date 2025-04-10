@@ -15,17 +15,132 @@
             background-size: cover;
             margin: 0;
             overflow: hidden;
+            font-family: sans-serif;
         } 
         .video-background {
             display: none;
         }
+
+        .navigation {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .navigation .list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .navigation .list a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navigation .list:hover a {
+            color: #00f7ff;
+        }
+
+        .navigation .list.active a {
+            color: #00f7ff;
+        }
+
+        .indicator {
+            position: absolute;
+            left: 0;
+            width: 4px;
+            height: 40px;
+            background: #00f7ff;
+            border-radius: 4px;
+            transition: top 0.3s ease;
+        }
+
+        .info-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            max-width: 80%;
+            max-height: 70%;
+            overflow-y: auto;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            display: none;
+        }
+
+        .info-container.show {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+        }
+
+        h1 {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                flex-direction: row;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                width: 100%;
+                transform: none;
+                justify-content: space-around;
+                padding: 0;
+            }
+
+            .navigation .list {
+                margin: 0;
+            }
+
+            .indicator {
+                width: 40px;
+                height: 4px;
+                top: auto !important;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .info-container {
+                width: 90%;
+                max-height: 60%;
+            }
+        }
     </style>
 </head>
 <body>
-    <video autoplay muted loop id="backgroundVideo" class="video-background" >
+    <video autoplay muted loop playsinline id="backgroundVideo" class="video-background">
         <source src="https://x0.at/DNc0.mp4" type="video/mp4">
     </video>
+
     <h1>BIO</h1>
+
     <div class="navigation">
         <ul>
             <li class="list active">
@@ -63,16 +178,11 @@
                     <span class="icon"><ion-icon name="volume-high"></ion-icon></span>
                 </a>
             </li>
-            <li class="list">
-                <a href="#" id="muteToggle">
-                </a>    
-            </li>
             <div class="indicator"></div>
-            </li>
-            </div>
         </ul>
+    </div>
 
-    <div class="info-container">
+    <div class="info-container" id="infoContainer">
         <div class="info-content" id="infoContent"></div>
     </div>
 
@@ -80,16 +190,15 @@
         const video = document.getElementById('backgroundVideo');
         const body = document.body;
 
-        // Отображаем видео только после загрузки
         video.addEventListener('canplaythrough', () => {
             video.style.display = 'block';
-            body.style.background = 'none'; // Убираем статичный фон
+            body.style.background = 'none';
         });
 
         const list = document.querySelectorAll('.list');
         const indicator = document.querySelector('.indicator');
         const infoContent = document.getElementById('infoContent');
-        const infoContainer = document.querySelector('.info-container');
+        const infoContainer = document.getElementById('infoContainer');
         const muteToggle = document.getElementById('muteToggle');
         const volumeIcon = muteToggle.querySelector('ion-icon');
 
@@ -98,10 +207,18 @@
             const itemRect = activeItem.getBoundingClientRect();
             const navRect = document.querySelector('.navigation').getBoundingClientRect();
             const centerY = itemRect.top - navRect.top + (itemRect.height / 2);
-            indicator.style.top = `${centerY}px`;
+            if (window.innerWidth <= 768) {
+                const centerX = itemRect.left - navRect.left + (itemRect.width / 2);
+                indicator.style.left = `${centerX}px`;
+                indicator.style.top = 'auto';
+            } else {
+                indicator.style.top = `${centerY}px`;
+                indicator.style.left = '0px';
+            }
         }
 
         function activeLink() {
+            if (this.classList.contains('active')) return;
             list.forEach((item) => item.classList.remove('active'));
             this.classList.add('active');
             setIndicator();
@@ -140,11 +257,8 @@
                                <ul>
                                    <li>Playing Dota 2</li>
                                    <li>Sell Of DOX//SWATT Services</li>
-                                   <li>Playing Dota 2</li>
                                    <li>Trolling ONLY Discord</li>
-                                   <li>Playing Dota 2</li>
                                    <li>An Attempt To Upgrade TITAN</li>
-                                   <li>Playing Dota 2</li>
                                    <li>Life for Dota 2</li>
                                </ul>
                                <p>The list updated soon...</p>`;
@@ -152,7 +266,7 @@
                 case 'share-social':
                     content = `<h2>Links to My Social Networks:</h2>
                                <ul>
-                                   <li>My Official UserName Telegram: <a href="https://t.me/xyesoskh">click.</a></li>
+                                   <li>My Official Telegram: <a href="https://t.me/xyesoskh">click.</a></li>
                                    <li>My Telegram Account: <a href="https://t.me/lomkapd">click.</a></li>
                                    <li>My Price List: <a href="https://t.me/biozyam">click.</a></li>
                                    <li>My Works: <a href="https://t.me/+cx4lMgHDhlhhMjIy">click.</a></li>
@@ -164,13 +278,14 @@
                 case 'briefcase':
                     content = `<h2>Communication with me:</h2>
                                <p>Online: Only Luck (MSK, GMT+3)</p>
-                               <li></li>
                                <p>If you have been ignored for 24 hours - duplicate the message</p>`;
                     break;
                 case 'man-outline':
                     content = `<h2>My Defenders:</h2>
-                               <li><a href="https://t.me/chapaevv">Chapaevv</a></li>
-                               <li><a href="https://t.me/bob_os1nt">Bob_Osint</a></li>`;
+                               <ul>
+                                   <li><a href="https://t.me/chapaevv">Chapaevv</a></li>
+                                   <li><a href="https://t.me/bob_os1nt">Bob_Osint</a></li>
+                               </ul>`;
                     break;
             }
             if (iconName !== 'home') {
@@ -186,6 +301,7 @@
 
         list.forEach((item) => item.addEventListener('click', activeLink));
         window.addEventListener('load', setIndicator);
+        window.addEventListener('resize', setIndicator);
 
         muteToggle.addEventListener('click', (event) => {
             event.preventDefault();
@@ -194,4 +310,5 @@
         });
     </script>
 </body>
+</html>
 </html>
