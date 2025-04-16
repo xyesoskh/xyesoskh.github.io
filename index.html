@@ -1,254 +1,144 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>xyesoskh-bio</title>
-  <link rel="stylesheet" href="background_style.css" />
-  <link rel="stylesheet" href="info_style.css" />
-  <link rel="stylesheet" href="menu_style.css" />
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Site</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body {
-      background: url("https://x0.at/DNc0.mp4") no-repeat center center fixed;
-      background-size: cover;
+    * {
       margin: 0;
-      overflow: hidden;
-      font-family: "Segoe UI", sans-serif;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .video-background {
-      display: none;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1618826411642-2f2e9a73d813') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
     }
 
-    h1 {
-      position: absolute;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #00f7ff;
-      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
-      z-index: 100;
-      font-size: 3em;
-      letter-spacing: 2px;
+    .container {
+      display: flex;
+      min-height: 100vh;
     }
 
-    .navigation {
+    .sidebar {
       position: fixed;
-      top: 50%;
+      top: 0;
       left: 0;
-      transform: translateY(-50%);
+      width: 80px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
       display: flex;
       flex-direction: column;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 10px 0;
-      z-index: 100;
-    }
-
-    .list {
-      list-style: none;
-      margin: 10px 0;
-    }
-
-    .list a {
-      display: flex;
       align-items: center;
-      justify-content: center;
-      height: 50px;
-      width: 50px;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s ease;
+      padding-top: 20px;
+      gap: 20px;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      z-index: 10;
     }
 
-    .list a:hover {
-      transform: scale(1.1);
-      color: #00f7ff;
+    .sidebar a {
+      color: magenta;
+      font-size: 24px;
+      transition: transform 0.3s ease;
     }
 
-    .list.active a {
-      background: rgba(0, 247, 255, 0.15);
-      border-radius: 8px;
+    .sidebar a:hover {
+      transform: scale(1.2);
     }
 
-    .indicator {
-      position: absolute;
-      left: 0;
-      width: 4px;
-      height: 40px;
-      background: #00f7ff;
-      border-radius: 4px;
-      transition: top 0.3s ease;
+    .main-content {
+      margin-left: 80px;
+      padding: 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
 
-    .info-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
-      padding: 30px;
-      border-radius: 10px;
-      color: white;
-      max-width: 80%;
-      max-height: 70%;
-      overflow-y: auto;
-      opacity: 0;
-      transition: all 0.4s ease;
-      display: none;
+    .block {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.6s ease;
     }
 
-    .info-container.show {
-      display: block;
-      opacity: 1;
+    h1, h2 {
+      margin-bottom: 15px;
+      font-weight: 600;
     }
 
-    .info-content h2,
-    .info-content ul,
-    .info-content p {
-      opacity: 0;
-      animation: fadeIn 0.6s ease forwards;
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 50px;
+        gap: 15px;
+        padding-top: 10px;
+      }
+
+      .sidebar a {
+        font-size: 20px;
+      }
+
+      .main-content {
+        margin-left: 60px;
+        padding: 20px 15px;
+      }
+
+      .block {
+        padding: 20px;
+        font-size: 16px;
+      }
+
+      h1, h2 {
+        font-size: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline id="backgroundVideo" class="video-background">
-    <source src="https://x0.at/DNc0.mp4" type="video/mp4" />
-  </video>
-
-  <h1>BIO</h1>
-
-  <div class="navigation">
-    <ul>
-      <li class="list active"><a href="#"><span class="icon"><ion-icon name="home"></ion-icon></span></a></li>
-      <li class="list"><a href="#"><span class="icon"><ion-icon name="game-controller"></ion-icon></span></a></li>
-      <li class="list"><a href="#"><span class="icon"><ion-icon name="person-circle"></ion-icon></span></a></li>
-      <li class="list"><a href="#"><span class="icon"><ion-icon name="share-social"></ion-icon></span></a></li>
-      <li class="list"><a href="#"><span class="icon"><ion-icon name="briefcase"></ion-icon></span></a></li>
-      <li class="list"><a href="#"><span class="icon"><ion-icon name="man-outline"></ion-icon></span></a></li>
-      <li class="list">
-        <a href="#" id="muteToggle">
-          <span class="icon"><ion-icon name="volume-high"></ion-icon></span>
-        </a>
-      </li>
-      <div class="indicator"></div>
-    </ul>
+  <div class="container">
+    <div class="sidebar">
+      <a href="#"><i class="fas fa-home"></i></a>
+      <a href="#"><i class="fas fa-gamepad"></i></a>
+      <a href="#"><i class="fas fa-user"></i></a>
+      <a href="#"><i class="fas fa-share-alt"></i></a>
+      <a href="#"><i class="fas fa-briefcase"></i></a>
+      <a href="#"><i class="fas fa-male"></i></a>
+      <a href="#"><i class="fas fa-volume-up"></i></a>
+    </div>
+    <div class="main-content">
+      <div class="block">
+        <h1>BIO</h1>
+        <p>Hi, I'm someone who loves games and tech. Always exploring new things!</p>
+      </div>
+      <div class="block">
+        <h2>Games</h2>
+        <ul>
+          <li>Dota 2</li>
+          <li>CS 2</li>
+          <li>Arizona RP</li>
+          <li>Brawlhalla</li>
+        </ul>
+        <p>The list will be updated...</p>
+      </div>
+    </div>
   </div>
-
-  <div class="info-container">
-    <div class="info-content" id="infoContent"></div>
-  </div>
-
-  <script>
-    const video = document.getElementById("backgroundVideo");
-    const body = document.body;
-
-    video.addEventListener("canplaythrough", () => {
-      video.style.display = "block";
-      body.style.background = "none";
-    });
-
-    const list = document.querySelectorAll(".list");
-    const indicator = document.querySelector(".indicator");
-    const infoContent = document.getElementById("infoContent");
-    const infoContainer = document.querySelector(".info-container");
-    const muteToggle = document.getElementById("muteToggle");
-    const volumeIcon = muteToggle.querySelector("ion-icon");
-
-    function setIndicator() {
-      const activeItem = document.querySelector(".list.active");
-      const itemRect = activeItem.getBoundingClientRect();
-      const navRect = document.querySelector(".navigation").getBoundingClientRect();
-      const centerY = itemRect.top - navRect.top + itemRect.height / 2;
-      indicator.style.top = `${centerY}px`;
-    }
-
-    function activeLink(event) {
-      event.preventDefault();
-      list.forEach((item) => item.classList.remove("active"));
-      this.classList.add("active");
-      setIndicator();
-
-      const clickedItem = this.querySelector(".icon ion-icon").getAttribute("name");
-      showInfo(clickedItem);
-    }
-
-    function showInfo(iconName) {
-      let content = "";
-      switch (iconName) {
-        case "home":
-          content = "<h2>Welcome to Home!</h2>";
-          infoContainer.classList.remove("show");
-          break;
-        case "game-controller":
-          content = `<h2>Games</h2>
-                       <ul><li>Dota 2</li><li>CS 2</li><li>Arizona RP</li><li>Brawlhalla</li></ul>
-                       <p>The list will be updated...</p>`;
-          break;
-        case "person-circle":
-          content = `<h2>Bio:</h2>
-                       <p>Name: Zyama</p>
-                       <ul><li>Age: 17 y.o</li><li>Gender: Male</li><li>Birthdate: 20 April</li><li>Km Name: Zyama Nevermosk'y</li></ul>
-                       <h3>Hobbies:</h3>
-                       <ul><li>Playing Dota 2</li><li>Sell Of DOX//SWATT Services</li><li>Trolling ONLY Discord</li><li>An Attempt To Upgrade TITAN</li><li>Life for Dota 2</li></ul>
-                       <p>The list updated soon...</p>`;
-          break;
-        case "share-social":
-          content = `<h2>Links to My Social Networks:</h2>
-                       <ul>
-                         <li><a href="https://t.me/xyesoskh">Telegram (official)</a></li>
-                         <li><a href="https://t.me/lomkapd">Telegram (account)</a></li>
-                         <li><a href="https://t.me/biozyam">Price List</a></li>
-                         <li><a href="https://t.me/+cx4lMgHDhlhhMjIy">My Works</a></li>
-                         <li><a href="https://doxbin.org/user/xyesoskh">DoxBin</a></li>
-                         <li><a href="https://vk.com/music/playlist/488355836_13">PlayList</a></li>
-                       </ul>`;
-          break;
-        case "briefcase":
-          content = `<h2>Communication with me:</h2>
-                       <p>Online: Only Luck (MSK, GMT+3)</p>
-                       <p>If ignored more than 24 hours — duplicate message</p>`;
-          break;
-        case "man-outline":
-          content = `<h2>My Defenders:</h2>
-                       <ul>
-                         <li><a href="https://t.me/chapaevv">Chapaevv</a></li>
-                         <li><a href="https://t.me/bob_os1nt">Bob_Osint</a></li>
-                       </ul>`;
-          break;
-      }
-
-      if (iconName !== "home") {
-        infoContent.innerHTML = content;
-        infoContainer.classList.add("show");
-      }
-    }
-
-    function toggleMute() {
-      video.muted = !video.muted;
-      volumeIcon.name = video.muted ? "volume-mute" : "volume-high";
-    }
-
-    list.forEach((item) => {
-      item.addEventListener("click", activeLink);
-    });
-
-    window.addEventListener("load", setIndicator);
-
-    muteToggle.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      toggleMute();
-    });
-  </script>
 </body>
 </html>
