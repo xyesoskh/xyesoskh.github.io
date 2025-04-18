@@ -15,6 +15,7 @@
     z-index: 10;
     display: none;
     animation: fadeInRight 0.5s ease forwards;
+    scrollbar-width: thin;
 }
 
 .info-container.show {
@@ -44,10 +45,8 @@
     }
 }
 
-/* Адаптация */
 @media (max-width: 768px) {
     .info-container {
-        position: fixed;
         left: 50%;
         transform: translateX(-50%) translateY(0);
         top: auto;
@@ -55,5 +54,12 @@
         width: 90%;
         max-height: 60%;
         padding: 20px;
+    }
+}
+
+@media (max-height: 600px) {
+    .info-container {
+        top: 20px;
+        transform: none;
     }
 }
