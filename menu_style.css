@@ -51,15 +51,14 @@
     transform: scale(1.2);
 }
 
+/* Новый аккуратный индикатор */
 .indicator {
     position: absolute;
-    left: 50%;
-    width: 40px;
+    top: 0;
+    left: 0;
+    width: 4px;
     height: 40px;
-    background: rgba(255, 61, 61, 0.2);
-    border: 3px solid var(--indicator-clr);
-    border-radius: 50%;
-    transition: 0.4s ease;
-    transform: translateX(-50%);
-    z-index: -1;
+    background: var(--indicator-clr);
+    border-radius: 2px;
+    transition: top 0.3s ease;
 }
