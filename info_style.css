@@ -1,11 +1,10 @@
 .info-container {
     position: fixed;
     right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 90vw;
-    max-width: 350px;
-    max-height: 80vh;
+    top: 30px;
+    bottom: 30px;
+    width: 350px;
+    max-width: 90vw;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -15,10 +14,8 @@
     z-index: 10;
     display: none;
     overflow: hidden;
-    animation: fadeInRight 0.5s ease forwards;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
     box-sizing: border-box;
+    animation: fadeInRight 0.5s ease forwards;
 }
 
 .info-container.show {
@@ -26,16 +23,17 @@
 }
 
 .info-content {
+    height: 100%;
     overflow-y: auto;
-    max-height: calc(100% - 20px);
     padding-right: 10px;
     scrollbar-width: thin;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .info-content::-webkit-scrollbar {
     width: 6px;
 }
-
 .info-content::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -50,11 +48,11 @@
 @keyframes fadeInRight {
     from {
         opacity: 0;
-        transform: translateX(40px) translateY(-50%);
+        transform: translateX(40px);
     }
     to {
         opacity: 1;
-        transform: translateX(0) translateY(-50%);
+        transform: translateX(0);
     }
 }
 
@@ -68,7 +66,8 @@
 @media (max-width: 768px) {
     .info-container {
         left: 50%;
-        top: auto;
+        right: auto;
+        top: 20px;
         bottom: 20px;
         transform: translateX(-50%);
         width: 90vw;
@@ -77,12 +76,5 @@
 
     .info-content {
         max-height: 100%;
-    }
-}
-
-@media (max-height: 600px) {
-    .info-container {
-        top: 20px;
-        transform: none;
     }
 }
