@@ -28,6 +28,8 @@
     overflow-y: auto;
     padding-right: 10px;
     scrollbar-width: thin;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .info-content::-webkit-scrollbar {
