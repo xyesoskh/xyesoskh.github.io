@@ -9,13 +9,14 @@
     backdrop-filter: blur(15px);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-    color: white;
     padding: 20px;
     z-index: 10;
     display: none;
     overflow: hidden;
-    box-sizing: border-box;
     animation: fadeInRight 0.5s ease forwards;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .info-container.show {
@@ -27,8 +28,6 @@
     overflow-y: auto;
     padding-right: 10px;
     scrollbar-width: thin;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
 }
 
 .info-content::-webkit-scrollbar {
@@ -40,7 +39,9 @@
     border-radius: 10px;
 }
 
-.info-content h2, .info-content p, .info-content ul {
+.info-content h2,
+.info-content p,
+.info-content ul {
     margin-bottom: 15px;
     animation: fadeIn 0.6s ease forwards;
     opacity: 0;
@@ -63,7 +64,6 @@
     }
 }
 
-/* Адаптация под телефон */
 @media (max-width: 768px) {
     .info-container {
         left: 50%;
@@ -78,7 +78,4 @@
     .info-content {
         height: 100%;
     }
-}
-.info-container {
-  border: 3px solid red !important;
 }
