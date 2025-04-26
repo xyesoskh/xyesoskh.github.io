@@ -12,12 +12,11 @@
     padding: 20px;
     z-index: 10;
     display: none;
-    overflow: hidden;
     animation: fadeInRight 0.5s ease forwards;
     box-sizing: border-box;
+    color: white;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    color: white; /* делаем текст белым */
 }
 
 .info-container.show {
@@ -25,13 +24,20 @@
 }
 
 .info-content {
-    height: 100%;
+    position: relative;
     max-height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 10px;
-    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+/* Не даём вложенному контенту вылезать */
+.info-content * {
+    max-width: 100%;
 }
 
 .info-content::-webkit-scrollbar {
@@ -80,7 +86,6 @@
     }
 
     .info-content {
-        height: 100%;
         max-height: 100%;
     }
 }
