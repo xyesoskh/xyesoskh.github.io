@@ -32,14 +32,16 @@
     display: block;
     box-sizing: border-box;
     word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word; /* Новый перенос длинных слов */
-    white-space: normal;    /* Новый перенос длинных строк */
+    overflow-wrap: anywhere; /* <-- вот это добавлено */
+    word-break: break-word;
+    white-space: normal;
 }
 
-/* Чтобы весь вложенный контент не вылезал за границы */
+/* Чтобы вложенный текст не вылазил */
 .info-content * {
     max-width: 100%;
+    overflow-wrap: anywhere; /* <-- тоже перенос для всех элементов */
+    word-break: break-word;
 }
 
 .info-content::-webkit-scrollbar {
