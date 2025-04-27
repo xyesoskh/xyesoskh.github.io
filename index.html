@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>xyesoskh-bio</title>
 
-  <!-- Подключение CSS -->
+  <!-- Стили -->
   <link rel="stylesheet" href="background_style.css">
-  <link rel="stylesheet" href="info_style.css?v=2">
+  <link rel="stylesheet" href="info_style.css?v=3">
   <link rel="stylesheet" href="menu_style.css">
 
-  <!-- Иконки -->
+  <!-- Иконки Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
+
   <video autoplay muted loop playsinline id="backgroundVideo" class="video-background">
     <source src="https://x0.at/DNc0.mp4" type="video/mp4">
   </video>
@@ -75,22 +76,32 @@
       let content = '';
       switch (iconName) {
         case 'home':
-          content = '<h2>Welcome to Home!</h2>';
+          content = '<h2>Welcome to Home!</h2><p>Select a menu item to see more info.</p>';
           infoContainer.classList.remove('show');
           break;
+
         case 'game-controller':
-          content = `<h2>Games</h2>
-            <ul><li>Dota 2</li><li>CS 2</li><li>Arizona RP</li><li>Brawlhalla</li></ul>
-            <p>The list will be updated...</p>`;
-          break;
-        case 'person-circle':
-          content = `<h2>Bio:</h2>
-            <p>Name: Zyama</p>
+          content = `
+            <h2>Games</h2>
             <ul>
-              <li>Age: 17 y.o</li>
-              <li>Gender: Male</li>
-              <li>Birthdate: 20 April</li>
-              <li>Km Name: Zyama Nevermosk'y</li>
+              <li>Dota 2</li>
+              <li>CS 2</li>
+              <li>Arizona RP</li>
+              <li>Brawlhalla</li>
+            </ul>
+            <p>The list will be updated...</p>
+          `;
+          break;
+
+        case 'person-circle':
+          content = `
+            <h2>Bio:</h2>
+            <p><strong>Name:</strong> Zyama</p>
+            <ul>
+              <li><strong>Age:</strong> 17 y.o</li>
+              <li><strong>Gender:</strong> Male</li>
+              <li><strong>Birthdate:</strong> 20 April</li>
+              <li><strong>Km Name:</strong> Zyama Nevermosk'y</li>
             </ul>
             <h3>Hobbies:</h3>
             <ul>
@@ -99,30 +110,40 @@
               <li>Protection Of Civilians</li>
               <li>An Attempt To Upgrade TITAN</li>
               <li>Life For Dota 2</li>
-            </ul>`;
+            </ul>
+          `;
           break;
+
         case 'share-social':
-          content = `<h2>Links:</h2>
+          content = `
+            <h2>Links:</h2>
             <ul>
-              <li><a href="https://t.me/xyesoskh">Username</a></li>
-              <li><a href="https://t.me/lomkapd">Telegram</a></li>
-              <li><a href="https://t.me/biozyam">Price</a></li>
-              <li><a href="https://t.me/+cx4lMgHDhlhhMjIy">Works</a></li>
-              <li><a href="https://doxbin.org/user/xyesoskh">Doxbin</a></li>
-              <li><a href="https://t.me/feedbacktrue123_bot">SpamBlock</a></li>
-            </ul>`;
+              <li><a href="https://t.me/xyesoskh" target="_blank">Username</a></li>
+              <li><a href="https://t.me/lomkapd" target="_blank">Telegram</a></li>
+              <li><a href="https://t.me/biozyam" target="_blank">Price</a></li>
+              <li><a href="https://t.me/+cx4lMgHDhlhhMjIy" target="_blank">Works</a></li>
+              <li><a href="https://doxbin.org/user/xyesoskh" target="_blank">Doxbin</a></li>
+              <li><a href="https://t.me/feedbacktrue123_bot" target="_blank">SpamBlock</a></li>
+            </ul>
+          `;
           break;
+
         case 'briefcase':
-          content = `<h2>Communication:</h2>
+          content = `
+            <h2>Communication:</h2>
             <p>Online: Only Luck (MSK, GMT+3)</p>
-            <p>If ignored more than 24h — duplicate message</p>`;
+            <p>If ignored more than 24h — duplicate your message.</p>
+          `;
           break;
+
         case 'man-outline':
-          content = `<h2>My Defenders:</h2>
+          content = `
+            <h2>My Defenders:</h2>
             <ul>
-              <li><a href="https://t.me/chapaevv">Chapaevv</a></li>
-              <li><a href="https://t.me/bob_os1nt">Bob_Osint</a></li>
-            </ul>`;
+              <li><a href="https://t.me/chapaevv" target="_blank">Chapaevv</a></li>
+              <li><a href="https://t.me/bob_os1nt" target="_blank">Bob_Osint</a></li>
+            </ul>
+          `;
           break;
       }
 
@@ -145,5 +166,6 @@
       toggleMute();
     });
   </script>
+
 </body>
 </html>
