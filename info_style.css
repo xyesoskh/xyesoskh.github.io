@@ -16,7 +16,7 @@
     box-sizing: border-box;
     color: white;
     word-wrap: break-word;
-    overflow-wrap: break-word;
+    overflow: visible; /* ОЧЕНЬ ВАЖНО: теперь видно всё! */
 }
 
 .info-container.show {
@@ -24,18 +24,16 @@
 }
 
 .info-content {
-    position: relative;
-    height: calc(100% - 10px); /* исправление! */
-    overflow-y: auto;
+    max-height: 100%;
+    overflow-y: auto; /* Даем скролл если контент не помещается */
     overflow-x: hidden;
     padding-right: 10px;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    box-sizing: border-box;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
-/* Чтобы вложенный текст не вылезал */
 .info-content * {
     max-width: 100%;
 }
@@ -84,8 +82,7 @@
         width: 90vw;
         max-width: 350px;
     }
-
     .info-content {
-        height: calc(100% - 10px); /* исправление и для мобилок */
+        max-height: 100%;
     }
 }
