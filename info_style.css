@@ -3,8 +3,10 @@
     top: 20px;
     bottom: 20px;
     right: 20px;
+    left: auto;
     width: 350px;
     max-width: 90vw;
+    max-height: calc(100vh - 40px); /* добавлено */
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -15,9 +17,7 @@
     animation: fadeInRight 0.5s ease forwards;
     box-sizing: border-box;
     color: white;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    overflow: visible;
+    overflow: hidden; /* ВАЖНО: скрываем лишнее */
 }
 
 .info-container.show {
@@ -25,14 +25,13 @@
 }
 
 .info-content {
-    max-height: 100%;
+    height: 100%; /* используем всё доступное пространство */
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 10px;
-    display: block;
     box-sizing: border-box;
     word-wrap: break-word;
-    overflow-wrap: anywhere; /* <-- вот это добавлено */
+    overflow-wrap: anywhere;
     word-break: break-word;
     white-space: normal;
 }
