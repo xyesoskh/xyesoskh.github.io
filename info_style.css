@@ -25,15 +25,24 @@
 }
 
 .info-content {
-    height: 100%; /* используем всё доступное пространство */
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 10px;
     box-sizing: border-box;
+    color: white;
+
     word-wrap: break-word;
     overflow-wrap: anywhere;
     word-break: break-word;
-    white-space: normal;
+    white-space: pre-wrap; /* <-- КЛЮЧЕВОЕ: разрешает переносы и сохраняет отступы */
+}
+
+.info-content * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 /* Чтобы вложенный текст не вылазил */
