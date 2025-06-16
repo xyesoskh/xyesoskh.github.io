@@ -3,10 +3,8 @@
     top: 20px;
     bottom: 20px;
     right: 20px;
-    left: auto;
     width: 350px;
     max-width: 90vw;
-    max-height: calc(100vh - 40px); /* добавлено */
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -17,7 +15,10 @@
     animation: fadeInRight 0.5s ease forwards;
     box-sizing: border-box;
     color: white;
-    overflow: hidden; /* ВАЖНО: скрываем лишнее */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    overflow-x: hidden; /* 📌 Фикс горизонтального скролла */
 }
 
 .info-container.show {
@@ -25,30 +26,23 @@
 }
 
 .info-content {
-    height: 100%;
+    max-height: 100%;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: hidden; /* 📌 Фикс горизонтального скролла */
     padding-right: 10px;
+    display: block;
     box-sizing: border-box;
-    color: white;
-
     word-wrap: break-word;
     overflow-wrap: anywhere;
     word-break: break-word;
-    white-space: pre-wrap; /* <-- КЛЮЧЕВОЕ: разрешает переносы и сохраняет отступы */
-}
-
-.info-content * {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    white-space: pre-wrap;
+    white-space: normal;
+    font-size: 16px;
 }
 
 /* Чтобы вложенный текст не вылазил */
 .info-content * {
     max-width: 100%;
-    overflow-wrap: anywhere; /* <-- тоже перенос для всех элементов */
+    overflow-wrap: anywhere;
     word-break: break-word;
 }
 
@@ -98,5 +92,12 @@
     }
     .info-content {
         max-height: 100%;
+    }
+}
+
+/* 📱 Фикс для телефонов */
+@media (max-width: 480px) {
+    .info-content {
+        font-size: 14px;
     }
 }
