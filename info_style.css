@@ -3,6 +3,7 @@
     top: 20px;
     bottom: 20px;
     right: 20px;
+    left: auto;
     width: 350px;
     max-width: 90vw;
     background: rgba(0, 0, 0, 0.5);
@@ -18,7 +19,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow-y: auto;
-    overflow-x: hidden; /* 📌 Фикс горизонтального скролла */
+    overflow-x: hidden;
 }
 
 .info-container.show {
@@ -28,9 +29,8 @@
 .info-content {
     max-height: 100%;
     overflow-y: auto;
-    overflow-x: hidden; /* 📌 Фикс горизонтального скролла */
+    overflow-x: hidden;
     padding-right: 10px;
-    display: block;
     box-sizing: border-box;
     word-wrap: break-word;
     overflow-wrap: anywhere;
@@ -39,7 +39,7 @@
     font-size: 16px;
 }
 
-/* Чтобы вложенный текст не вылазил */
+/* Убедимся, что вложенные теги не ломают layout */
 .info-content * {
     max-width: 100%;
     overflow-wrap: anywhere;
@@ -49,7 +49,6 @@
 .info-content::-webkit-scrollbar {
     width: 6px;
 }
-
 .info-content::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -73,30 +72,21 @@
         transform: translateX(0);
     }
 }
-
 @keyframes fadeIn {
     to {
         opacity: 1;
     }
 }
 
+/* 📱 Мобильная адаптация */
 @media (max-width: 768px) {
     .info-container {
         left: 50%;
         right: auto;
-        top: 20px;
-        bottom: 20px;
         transform: translateX(-50%);
         width: 90vw;
-        max-width: 350px;
+        max-width: 90vw;
     }
-    .info-content {
-        max-height: 100%;
-    }
-}
-
-/* 📱 Фикс для телефонов */
-@media (max-width: 480px) {
     .info-content {
         font-size: 14px;
     }
