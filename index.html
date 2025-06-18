@@ -69,7 +69,12 @@
       this.classList.add("active");
       setIndicator();
 
-      const iconName = this.querySelector('.icon ion-icon').getAttribute('name');
+      const ionIcon = this.querySelector('.icon ion-icon');
+const faIcon = this.querySelector('.icon i');
+
+let iconName = '';
+if (ionIcon) iconName = ionIcon.getAttribute('name');
+else if (faIcon) iconName = faIcon.dataset.icon;;
       showInfo(iconName);
     }
 
