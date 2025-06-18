@@ -81,7 +81,6 @@
 @media (max-width: 768px) {
     .info-container {
         left: 110px;
-        right: auto;
         top: 20px;
         bottom: 20px;
         transform: none;
