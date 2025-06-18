@@ -61,4 +61,16 @@
     background: var(--indicator-clr);
     border-radius: 2px;
     transition: top 0.3s ease;
+a {
+    color: #4da6ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #80c1ff;
+    text-shadow: 0 0 5px rgba(128, 193, 255, 0.5);
+    text-decoration: underline;
+}
 }
