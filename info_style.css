@@ -1,48 +1,161 @@
 .info-container {
-  position: fixed;
-  bottom: 20px;
-  left: 80px;
-  right: 20px;
-  max-width: 90%;
-  max-height: 75vh;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 5;
-  display: none;
+    position: fixed;
+    top: 20px;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    max-width: 90vw;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    z-index: 10;
+    display: none;
+    animation: fadeInRight 0.5s ease forwards;
+    box-sizing: border-box;
+    color: white;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: visible;
 }
 
 .info-container.show {
-  display: block;
+    display: block;
 }
 
 .info-content {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  font-size: 1rem;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    display: block;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: anywhere; /* <-- вот это добавлено */
+    word-break: break-word;
+    white-space: normal;
 }
 
+/* Чтобы вложенный текст не вылазил */
+.info-content * {
+    max-width: 100%;
+    overflow-wrap: anywhere; /* <-- тоже перенос для всех элементов */
+    word-break: break-word;
+}
+
+.info-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.info-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.info-content h2,
+.info-content p,
 .info-content ul {
-  padding-left: 20px;
+    margin-bottom: 15px;
+    animation: fadeIn 0.6s ease forwards;
+    opacity: 0;
 }
 
-.info-content a {
-  color: #00aaff;
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
-@media (max-width: 350px) {
-  .info-container {
-    width: 90vw;
-    left: 5vw;
-    right: 5vw;
-    top: 10px;
-    bottom: 10px;
-    padding: 15px;
-  }
 
-  .info-content {
-    font-size: 14px;
-  }
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-container {
+        left: 50%;
+        right: auto;
+        top: 20px;
+        bottom: 20px;
+        transform: translateX(-50%);
+        width: 90vw;
+        max-width: 350px;
+    }
+    .info-content {
+        max-height: 100%;
+    }
+}
+
+menu_style.css
+
+:root {
+    --clr: #b400ff;
+    --indicator-clr: #ff3d3d;
+}
+
+.navigation {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.navigation ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.navigation ul li {
+    list-style: none;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navigation ul li a .icon {
+    font-size: 1.5em;
+    color: var(--clr);
+    transition: 0.3s ease;
+}
+
+.navigation ul li:hover a .icon,
+.navigation ul li.active a .icon {
+    color: white;
+    transform: scale(1.2);
+}
+
+/* Новый аккуратный индикатор */
+.indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 40px;
+    background: var(--indicator-clr);
+    border-radius: 2px;
+    transition: top 0.3s ease;
 }
